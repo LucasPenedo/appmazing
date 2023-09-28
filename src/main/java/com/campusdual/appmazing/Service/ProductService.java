@@ -26,7 +26,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<ProductDTO> queryAllProducts(ProductDTO productDTO) {
+    public List<ProductDTO> queryAllProducts() {
       return  ProductMapper.INSTANCE.toDTOList(this.productDao.findAll());
     }
 
