@@ -1,5 +1,6 @@
 package com.campusdual.appmazing.Modelo.DTO.ProductMapper;
 
+import com.campusdual.appmazing.Modelo.Categoria;
 import com.campusdual.appmazing.Modelo.Contactos;
 import com.campusdual.appmazing.Modelo.DTO.ContactosDTO;
 import org.mapstruct.Mapper;
