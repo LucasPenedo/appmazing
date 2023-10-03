@@ -1,17 +1,19 @@
-package com.campusdual.appmazing.Service;
+package com.campusdual.appmazing.service;
 
-import com.campusdual.appmazing.API.IProductService;
-import com.campusdual.appmazing.Modelo.DAO.ProductDao;
-import com.campusdual.appmazing.Modelo.DTO.ProductDTO;
-import com.campusdual.appmazing.Modelo.DTO.ProductMapper.ProductMapper;
-import com.campusdual.appmazing.Modelo.Product;
+import com.campusdual.appmazing.api.IProductService;
+import com.campusdual.appmazing.model.Product;
+import com.campusdual.appmazing.model.dao.ProductDao;
+import com.campusdual.appmazing.model.dto.ProductDTO;
+import com.campusdual.appmazing.model.dto.dtopmapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
-@Lazy
+
 @Service("ProductService")
+@Lazy
 public class ProductService implements IProductService {
 
     @Autowired
@@ -20,14 +22,13 @@ public class ProductService implements IProductService {
     @Override
     public ProductDTO queryProduct(ProductDTO productDTO) {
         Product product = ProductMapper.INSTANCE.toEntity(productDTO);
-        Product productFinal = productDao.getReferenceById(product.getId());
-        ProductDTO dto = ProductMapper.INSTANCE.toDTO(productFinal);
-        return dto;
+        Product productFinal = this.productDao.getReferenceById(product.getId());
+        return ProductMapper.INSTANCE.toDTO(productFinal);
     }
 
     @Override
     public List<ProductDTO> queryAllProducts() {
-      return  ProductMapper.INSTANCE.toDTOList(this.productDao.findAll());
+        return ProductMapper.INSTANCE.toDTOList(this.productDao.findAll());
     }
 
     @Override
@@ -46,7 +47,24 @@ public class ProductService implements IProductService {
     public int deleteProduct(ProductDTO productDTO) {
         int id = productDTO.getId();
         Product product = ProductMapper.INSTANCE.toEntity(productDTO);
-        productDao.delete(product);
+        this.productDao.delete(product);
         return id;
     }
+
+    @Override
+    public int buyProduct(ProductDTO product, int quantity) {
+        ProductDTO productToBuy = this.queryProduct(product);
+        if (productToBuy.isActive() && quantity <= productToBuy.getStock()){
+            productToBuy.setStock(productToBuy.getStock()-quantity);
+            this.updateProduct(productToBuy);
+        }
+        return productToBuy.getStock();
+    }
+
+    @Override
+    public BigDecimal calculateTotalPrice(ProductDTO product, int quantity) {
+        ProductDTO productToBuy = this.queryProduct(product);
+        return productToBuy.getPrice().multiply(BigDecimal.valueOf(quantity));
+    }
+
 }
