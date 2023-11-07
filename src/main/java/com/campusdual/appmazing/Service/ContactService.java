@@ -1,4 +1,4 @@
-package com.campusdual.appmazing.service;
+package com.campusdual.appmazing.Service;
 
 import com.campusdual.appmazing.api.IContactService;
 import com.campusdual.appmazing.api.IProductService;
