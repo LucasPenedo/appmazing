@@ -1,4 +1,4 @@
-package com.campusdual.appmazing.controller;
+package com.campusdual.appmazing.Controller;
 
 import com.campusdual.appmazing.api.IContactService;
 import com.campusdual.appmazing.model.dto.ContactDTO;
