@@ -1,23 +1,19 @@
 package com.campusdual.appmazing.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+//importante decir que es una entidad.
 @Entity
-@Table(name = "PRODUCTS")
+@Table(name = "PRODUCTS") // indicar nombre de la tabla de la bbdd
 public class Product {
+    // indicar columnas de la tabla como atributos
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //esto para el id. Para la clave primaria. la strategy es para como generar los numeros, el incremental
     private int id;
-    @Column
+    @Column // el resto de columnas con esto.
     private String name;
     @Column
     private int stock;
@@ -27,12 +23,15 @@ public class Product {
     private boolean active;
     @Column
     private Date date_added;
+
     @ManyToOne
     @JoinColumn(name = "category")
     private Category category;
 
+//añadir getters y setters. aqui no hay constructores
+
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
@@ -40,7 +39,7 @@ public class Product {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -48,7 +47,7 @@ public class Product {
     }
 
     public int getStock() {
-        return this.stock;
+        return stock;
     }
 
     public void setStock(int stock) {
@@ -56,7 +55,7 @@ public class Product {
     }
 
     public BigDecimal getPrice() {
-        return this.price;
+        return price;
     }
 
     public void setPrice(BigDecimal price) {
@@ -64,7 +63,7 @@ public class Product {
     }
 
     public boolean isActive() {
-        return this.active;
+        return active;
     }
 
     public void setActive(boolean active) {
@@ -72,7 +71,7 @@ public class Product {
     }
 
     public Date getDate_added() {
-        return this.date_added;
+        return date_added;
     }
 
     public void setDate_added(Date date_added) {
@@ -80,7 +79,7 @@ public class Product {
     }
 
     public Category getCategory() {
-        return this.category;
+        return category;
     }
 
     public void setCategory(Category category) {

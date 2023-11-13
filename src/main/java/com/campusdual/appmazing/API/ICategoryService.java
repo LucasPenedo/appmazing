@@ -5,11 +5,12 @@ import com.campusdual.appmazing.model.dto.CategoryDTO;
 import java.util.List;
 
 public interface ICategoryService {
+    CategoryDTO queryCategory (CategoryDTO categoryDTO);
+    List<CategoryDTO> queryAllCategories();
 
-    //CRUD Operations
-    CategoryDTO queryCategory(CategoryDTO categoryDTO);
-    List<CategoryDTO> queryAllCategory();
     int insertCategory(CategoryDTO categoryDTO);
     int updateCategory(CategoryDTO categoryDTO);
     int deleteCategory(CategoryDTO categoryDTO);
+
+
 }

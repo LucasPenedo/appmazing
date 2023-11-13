@@ -1,29 +1,28 @@
 package com.campusdual.appmazing.model.dto;
 
+
 import com.campusdual.appmazing.model.Category;
-import com.campusdual.appmazing.model.dto.CategoryDTO;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+
+
+
 public class ProductDTO {
 
+
     private int id;
-
     private String name;
-
     private int stock;
-
     private BigDecimal price;
-
     private boolean active;
-
     private Date date_added;
-
     private CategoryDTO category;
 
+
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
@@ -31,7 +30,7 @@ public class ProductDTO {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -39,7 +38,7 @@ public class ProductDTO {
     }
 
     public int getStock() {
-        return this.stock;
+        return stock;
     }
 
     public void setStock(int stock) {
@@ -47,7 +46,7 @@ public class ProductDTO {
     }
 
     public BigDecimal getPrice() {
-        return this.price;
+        return price;
     }
 
     public void setPrice(BigDecimal price) {
@@ -55,7 +54,7 @@ public class ProductDTO {
     }
 
     public boolean isActive() {
-        return this.active;
+        return active;
     }
 
     public void setActive(boolean active) {
@@ -63,7 +62,7 @@ public class ProductDTO {
     }
 
     public Date getDate_added() {
-        return this.date_added;
+        return date_added;
     }
 
     public void setDate_added(Date date_added) {
@@ -71,7 +70,7 @@ public class ProductDTO {
     }
 
     public CategoryDTO getCategory() {
-        return this.category;
+        return category;
     }
 
     public void setCategory(CategoryDTO category) {

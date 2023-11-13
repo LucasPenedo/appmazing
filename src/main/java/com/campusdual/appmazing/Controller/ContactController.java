@@ -2,53 +2,53 @@ package com.campusdual.appmazing.Controller;
 
 import com.campusdual.appmazing.api.IContactService;
 import com.campusdual.appmazing.model.dto.ContactDTO;
-import com.campusdual.appmazing.model.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
+@RestController
 @RequestMapping("/contacts")
 public class ContactController {
-
     @Autowired
-    private IContactService contactService;
-
+    IContactService contactService;
     @GetMapping
-    public String testContactsController() {
-        return "Contacts controller works!";
+    public String testController(){
+        return "Contact controller works!";
     }
 
-    @PostMapping(value = "/get")
-    public ContactDTO queryContact(@RequestBody ContactDTO contactDTO) {
-        return contactService.queryContact(contactDTO);
+    @PostMapping
+    public String testController(@RequestBody String name){
+        return "Contact controller works! " + name;
     }
 
-    @GetMapping(value = "/getAll")
-    public List<ContactDTO> queryAllContact() {
-        return contactService.queryAllContact();
+    @GetMapping(value = "/testMethod")
+    public String testControllerMethod() {
+
+        return "Contact controller method works ! ";
     }
 
-    @PostMapping(value = "/add")
-    public int addContact(@RequestBody ContactDTO contactDTO) {
-        return contactService.insertContact(contactDTO);
-    }
+    @PostMapping(value="/get")
+    public ContactDTO queryContact(@RequestBody ContactDTO contactDTO){
+        return contactService.queryContact(contactDTO); //preguntar pq no va
+     }
+     @GetMapping(value = "/getAll")
+     public List<ContactDTO> queryAllContacts(){
+        return this.contactService.queryAllContacts();
+     }
 
-    @PutMapping(value = "/update")
-    public int updateContact(@RequestBody ContactDTO contactDTO) {
-        return contactService.updateContact(contactDTO);
-    }
+     @PostMapping(value = "/add")
+     public int insertContact (@RequestBody ContactDTO contactDTO){
+        return this.contactService.insertContact(contactDTO);
+     }
 
-    @DeleteMapping(value = "/delete")
-    public int deleteContact(@RequestBody ContactDTO contactDTO) {
-        return contactService.deleteContact(contactDTO);
-    }
+     @PutMapping(value = "/update")
+     public int updateContact (@RequestBody ContactDTO contactDTO){
+        return this.contactService.updateContact(contactDTO);
+     }
 
+     @DeleteMapping(value = "/delete")
+    public int deleteContact (@RequestBody ContactDTO contactDTO){
+        return this.contactService.deleteContact(contactDTO);
+     }
 }

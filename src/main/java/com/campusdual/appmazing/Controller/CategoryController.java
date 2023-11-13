@@ -3,51 +3,50 @@ package com.campusdual.appmazing.controller;
 import com.campusdual.appmazing.api.ICategoryService;
 import com.campusdual.appmazing.model.dto.CategoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController()
-@RequestMapping("/category")
+@RestController
+@RequestMapping("/categories")
 public class CategoryController {
-
     @Autowired
-    private ICategoryService categoryService;
+    ICategoryService categoryService;
 
     @GetMapping
-    public String testContactsController() {
-        return "Category controller works!";
+    public String testController(){
+        return "Controller Works";
+    }
+
+    @PostMapping (value = "/testMethod")
+    public String testControllerMethod(@RequestBody String name) {
+        return "Controller works! " + name;
     }
 
     @PostMapping(value = "/get")
-    public CategoryDTO queryCategory(@RequestBody CategoryDTO categoryDTO) {
-        return categoryService.queryCategory(categoryDTO);
+    public CategoryDTO queryCategory(@RequestBody CategoryDTO categoryDTO){
+        return this.categoryService.queryCategory(categoryDTO);
     }
 
-    @GetMapping(value = "/getAll")
+    @GetMapping (value = "/getAll")
     public List<CategoryDTO> queryAllCategories(){
-        return categoryService.queryAllCategory();
+        return this.categoryService.queryAllCategories();
     }
 
     @PostMapping(value = "/add")
-    public int insertCategory(@RequestBody CategoryDTO category){
-        return this.categoryService.insertCategory(category);
+    public int insertCategory(@RequestBody CategoryDTO categoryDTO){
+        return this.categoryService.insertCategory(categoryDTO);
     }
 
-    @PutMapping(value = "/update")
-    public int updateCategory(@RequestBody CategoryDTO category){
-        return this.categoryService.updateCategory(category);
+    @PutMapping (value = "/update")
+    public int updateCategory(@RequestBody CategoryDTO categoryDTO){
+        return this.categoryService.updateCategory(categoryDTO);
     }
 
-    @DeleteMapping(value = "/add")
-    public int deleteCategory(@RequestBody CategoryDTO category){
-        return this.categoryService.deleteCategory(category);
+    @DeleteMapping (value = "/delete")
+    public int deleteCategory(@RequestBody CategoryDTO categoryDTO){
+        return this.categoryService.deleteCategory(categoryDTO);
     }
+
 
 }

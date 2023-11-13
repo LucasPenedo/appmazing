@@ -1,32 +1,26 @@
 package com.campusdual.appmazing.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "CONTACTS")
 public class Contact {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
     private String name;
     @Column
-    private String surname1;
+    private String first_surname;
     @Column
-    private String surname2;
+    private String last_surname;
     @Column
-    private String phone;
+    private int phone_number;
     @Column
     private String email;
 
     public int getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(int id) {
@@ -34,39 +28,39 @@ public class Contact {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getSurname1() {
-        return this.surname1;
+    public String getFirst_surname() {
+        return first_surname;
     }
 
-    public void setSurname1(String surname1) {
-        this.surname1 = surname1;
+    public void setFirst_surname(String first_surname) {
+        this.first_surname = first_surname;
     }
 
-    public String getSurname2() {
-        return this.surname2;
+    public String getLast_surname() {
+        return last_surname;
     }
 
-    public void setSurname2(String surname2) {
-        this.surname2 = surname2;
+    public void setLast_surname(String last_surname) {
+        this.last_surname = last_surname;
     }
 
-    public String getPhone() {
-        return this.phone;
+    public int getPhone_number() {
+        return phone_number;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone_number(int phone_number) {
+        this.phone_number = phone_number;
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
